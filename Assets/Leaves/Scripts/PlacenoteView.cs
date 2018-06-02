@@ -53,7 +53,7 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 	private List<ShapeInfo> shapeInfoList = new List<ShapeInfo> ();
 	private List<GameObject> shapeObjList = new List<GameObject> ();
 
-
+    private PaintManager paintManager;
 
 	private LibPlacenote.MapInfo mSelectedMapInfo;
 	private string mSelectedMapId {
@@ -79,6 +79,9 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 		StartARKit ();
 		FeaturesVisualizer.EnablePointcloud ();
 		LibPlacenote.Instance.RegisterListener (this);
+
+        GameObject pmgo = GameObject.FindWithTag("PaintManager");
+        paintManager = pmgo.GetComponent<PaintManager>();
 	}
 
 
