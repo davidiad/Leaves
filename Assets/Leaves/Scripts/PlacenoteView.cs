@@ -30,7 +30,7 @@ public class ShapeList
 }
 
 
-public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
+public class PlacenoteView : MonoBehaviour, PlacenoteListener
 {
 	[SerializeField] GameObject mMapSelectedPanel;
 	[SerializeField] GameObject mInitButtonPanel;
