@@ -16,6 +16,7 @@ public class PaintManager : MonoBehaviour
 
     private List<ParticleSystem> particleSystemList; // Stores all particle systems
     private List<Vector3> currVertices; // Stores current camera positions to paint
+    private List<Vector3> allVertices; // Store all verts in prep for export
     private ParticleSystem ps; // Stores current particle system
 
     void OnEnable()
@@ -36,13 +37,14 @@ public class PaintManager : MonoBehaviour
         particleSystemList = new List<ParticleSystem>();
         ps = Instantiate(particleSystemTemplate);
         currVertices = new List<Vector3>();
+        allVertices = new List<Vector3>();
         paintColor = Color.green;
         mesh = new Mesh();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        
         if (paintingOn && newPaintVertices)
         {
             if (currVertices.Count > 0)
@@ -57,6 +59,7 @@ public class PaintManager : MonoBehaviour
                     index++;
                 }
                 ps.SetParticles(particles, currVertices.Count);
+                mesh.GetVertices(currVertices);
                 newPaintVertices = false;
             }
         }
@@ -98,27 +101,43 @@ public class PaintManager : MonoBehaviour
 
     public Mesh GetMesh()
     {
+
+        //var particles = new ParticleSystem.Particle[7];
+        //var particlesLength = GetComponent<ParticleSystem>().GetParticles(particles);
+        //Debug.Log(particles[0].position);
+    
+
+
+        /*
         // get all the particles, and save them in a mesh
-        //foreach (ParticleSystem partSys in particleSystemList)
-        //{
+        foreach (ParticleSystem partSys in particleSystemList)
+        {
+            var particles = new ParticleSystem.Particle[partSys.particleCount];
+            var particlesLength = GetComponent<ParticleSystem>().GetParticles(particles);
+            Debug.Log(particles[0].position);
+
+            foreach (ParticleSystem.Particle particle in partSys) 
+            {
+                
+            }
+
             /*
-            ParticleSystem.Particle[] myParticles = (ParticleSystem)GetComponent("ParticleSystem");
+            ParticleSystem.Particle[] myParticles = partSys.pa
             partSys.GetParticles(myParticles);
             foreach (Particle particle in myParticles)
             {
 
             }
 
-            ParticleSystem.Particle[] currentParticles = new ParticleSystem.Particle[partSys.particleCount]; 
+            ParticleSystem.Particle[] currentParticles = new ParticleSystem.Particle[partSys.particleCount];
             partSys.GetParticles(currentParticles);
-            foreach (Particle particle in currentParticles) 
+            foreach (Particle particle in currentParticles)
             {
-                
-            }
-            Vector3 [] verts = partSys.GetParticles()
 
-        }
-        */
+            }
+            Vector3[] verts = partSys.GetParticles()
+        }*/
+    
         return mesh;
     }
 

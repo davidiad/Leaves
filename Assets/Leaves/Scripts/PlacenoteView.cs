@@ -30,7 +30,8 @@ public class ShapeList
 }
 
 
-public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
+
+public class PlacenoteView : MonoBehaviour, PlacenoteListener
 {
 	[SerializeField] GameObject mMapSelectedPanel;
 	[SerializeField] GameObject mInitButtonPanel;
@@ -64,11 +65,13 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	private SphereCollider mSphereColliderDummy;
 	private CapsuleCollider mCapColliderDummy;
 
+    private PaintManager paintManager;
 
 	// Use this for initialization
 	void Start ()
 	{
-		Input.location.Start ();
+        paintManager = GameObject.FindWithTag("PaintManager").GetComponent<PaintManager>();
+		Input.location.Start();
 
 		mMapListPanel.SetActive (false);
 
