@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Placenote/Scenes/SampleScene.unity
-    guid: 1257efda9ace3439485a7e2c7516465e
+    path: Assets/Leaves/Scenes/Leaves.unity
+    guid: 96db53d17b4134da5890663dac976ea4
