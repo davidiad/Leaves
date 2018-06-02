@@ -96,11 +96,12 @@ public class PaintManager : MonoBehaviour
         currVertices = new List<Vector3>();
     }
 
-    public Mesh getMesh()
+    public Mesh GetMesh()
     {
         // get all the particles, and save them in a mesh
-        foreach (ParticleSystem partSys in particleSystemList)
-        {
+        //foreach (ParticleSystem partSys in particleSystemList)
+        //{
+            /*
             ParticleSystem.Particle[] myParticles = (ParticleSystem)GetComponent("ParticleSystem");
             partSys.GetParticles(myParticles);
             foreach (Particle particle in myParticles)
@@ -117,6 +118,7 @@ public class PaintManager : MonoBehaviour
             Vector3 [] verts = partSys.GetParticles()
 
         }
+        */
         return mesh;
     }
 
