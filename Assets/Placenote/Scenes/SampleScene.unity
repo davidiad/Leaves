@@ -2578,7 +2578,7 @@ GameObject:
   - component: {fileID: 842795527}
   m_Layer: 0
   m_Name: PaintManager
-  m_TagString: Untagged
+  m_TagString: PaintManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
