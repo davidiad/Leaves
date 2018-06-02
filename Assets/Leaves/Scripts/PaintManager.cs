@@ -124,12 +124,13 @@ public class PaintManager : MonoBehaviour
 
     private void ARFrameUpdated(UnityARCamera arCamera)
     {
-        Vector3 paintPosition = GetCameraPosition(arCamera) + (Camera.main.transform.parent.transform.forward * 0.2f);
+        Vector3 paintPosition = (Camera.main.transform.forward * 0.2f);// + GetCameraPosition(arCamera);
         if (Vector3.Distance(paintPosition, previousPosition) > 0.025f)
         {
             if (paintingOn) currVertices.Add(paintPosition);
             previousPosition = paintPosition;
             newPaintVertices = true;
+            Debug.Log("arCam Position: " + paintPosition);
         }
     }
 
