@@ -135,7 +135,8 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 			Vector3 arkitPosition = PNUtility.MatrixOps.GetPosition (matrix);
 			Quaternion arkitQuat = PNUtility.MatrixOps.GetRotation (matrix);
 
-			LibPlacenote.Instance.SendARFrame (mImage, arkitPosition, arkitQuat, mARCamera.videoParams.screenOrientation);
+			LibPlacenote.Instance.SendARFrame (mImage, arkitPosition, arkitQuat, 
+                                               mARCamera.videoParams.screenOrientation);
 		}
 	}
 
@@ -285,7 +286,8 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 
 
 	private void ConfigureSession(bool clearPlanes) {
-		ARKitWorldTrackingSessionConfiguration config = new ARKitWorldTrackingSessionConfiguration ();
+		ARKitWorldTrackingSessionConfiguration config = 
+            new ARKitWorldTrackingSessionConfiguration ();
 
 		if (mPlaneDetectionToggle.GetComponent<Toggle>().isOn) {
 			if (UnityARSessionNativeInterface.IsARKit_1_5_Supported ()) {
@@ -353,7 +355,8 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 
 	public void OnDropShapeClick ()
 	{
-		Vector3 shapePosition = Camera.main.transform.position + Camera.main.transform.forward * 0.3f;
+		Vector3 shapePosition = Camera.main.transform.position + 
+                                      Camera.main.transform.forward * 0.3f;
 		Quaternion shapeRotation = Camera.main.transform.rotation;
 
 		System.Random rnd = new System.Random ();
@@ -430,13 +433,17 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 	public void OnPose (Matrix4x4 outputPose, Matrix4x4 arkitPose) {}
 
 
-	public void OnStatusChange (LibPlacenote.MappingStatus prevStatus, LibPlacenote.MappingStatus currStatus)
+	public void OnStatusChange (LibPlacenote.MappingStatus prevStatus, 
+                                LibPlacenote.MappingStatus currStatus)
 	{
-		Debug.Log ("prevStatus: " + prevStatus.ToString() + " currStatus: " + currStatus.ToString());
-		if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST) {
+		Debug.Log ("prevStatus: " + prevStatus.ToString() + 
+                   " currStatus: " + currStatus.ToString());
+		if (currStatus == LibPlacenote.MappingStatus.RUNNING && 
+            prevStatus == LibPlacenote.MappingStatus.LOST) {
 			mLabelText.text = "Localized";
 			LoadShapesJSON (mSelectedMapInfo.userData);
-		} else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
+		} else if (currStatus == LibPlacenote.MappingStatus.RUNNING && 
+                   prevStatus == LibPlacenote.MappingStatus.WAITING) {
 			mLabelText.text = "Mapping";
 		} else if (currStatus == LibPlacenote.MappingStatus.LOST) {
 			mLabelText.text = "Searching for position lock";
