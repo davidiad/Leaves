@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.iOS;
+using UnityEngine.UI;
 
 public class PaintManager : MonoBehaviour
 {
+    public Button onoff;
+
     private Mesh mesh; // save particles in a mesh
 
     public ParticleSystem particleSystemTemplate;
@@ -18,14 +21,16 @@ public class PaintManager : MonoBehaviour
     private List<Vector3> currVertices; // Stores current camera positions to paint
     public ParticleSystem ps; // Stores current particle system
 
+    [SerializeField] Camera mainCam;
+
     void OnEnable()
     {
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent += ARFrameUpdated;
+        //UnityARSessionNativeInterface.ARFrameUpdatedEvent += ARFrameUpdated;
     }
 
     void OnDestroy()
     {
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
+        //UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
     }
 
     // Use this for initialization
@@ -60,11 +65,18 @@ public class PaintManager : MonoBehaviour
                 newPaintVertices = false;
             }
         }
+        Paint();
     }
 
     public void TogglePaint()
     {
         paintingOn = !paintingOn;
+        if (paintingOn)
+        {
+            onoff.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
+        } else {
+            onoff.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
     }
 
     public void RandomizeColor()
@@ -122,17 +134,35 @@ public class PaintManager : MonoBehaviour
         return mesh;
     }
 
+    private void Paint ()
+    {
+        Vector3 paintPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
+            //Camera.main.transform.position + Camera.main.transform.forward * 0.3f;
+        if (Vector3.Distance(paintPosition, previousPosition) > 0.025f)
+        {
+            if (paintingOn) currVertices.Add(paintPosition);
+            previousPosition = paintPosition;
+            newPaintVertices = true;
+
+        }
+    }
+    // Quaternion rot = Camera.main.transform.rotation;
+    /*
     private void ARFrameUpdated(UnityARCamera arCamera)
     {
-        Vector3 paintPosition = (Camera.main.transform.forward * 0.2f);// + GetCameraPosition(arCamera);
+
+        Vector3 paintPosition = (Camera.main.transform.forward * 0.2f) + GetCameraPosition(arCamera);
         if (Vector3.Distance(paintPosition, previousPosition) > 0.025f)
         {
             if (paintingOn) currVertices.Add(paintPosition);
             previousPosition = paintPosition;
             newPaintVertices = true;
             Debug.Log("arCam Position: " + paintPosition);
+        } else {
+            Debug.Log("arCam Position, Painting off: " + paintPosition);
         }
     }
+    */
 
     private Vector3 GetCameraPosition(UnityARCamera cam)
     {
