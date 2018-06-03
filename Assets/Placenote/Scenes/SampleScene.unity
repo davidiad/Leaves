@@ -1076,7 +1076,7 @@ Prefab:
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 122
+      value: 332.5
       objectReference: {fileID: 0}
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
@@ -1086,7 +1086,7 @@ Prefab:
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 244
+      value: 665
       objectReference: {fileID: 0}
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
@@ -1176,7 +1176,7 @@ Prefab:
     - target: {fileID: 224557590834245168, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 148
+      value: 179
       objectReference: {fileID: 0}
     - target: {fileID: 224557590834245168, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
@@ -2611,9 +2611,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ccbdd1243ae42449ec5c0ed5454c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onoff: {fileID: 0}
   particleSystemTemplate: {fileID: 198562639688608984, guid: f4f064f65d93e40aaae629b5fce52d25,
     type: 2}
   ps: {fileID: 0}
+  mainCam: {fileID: 0}
 --- !u!1 &843292803
 GameObject:
   m_ObjectHideFlags: 0
