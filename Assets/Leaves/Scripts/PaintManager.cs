@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PaintManager : MonoBehaviour
 {
     public Button onoff;
-
+    public GameObject paintTarget;
     private Mesh mesh; // save particles in a mesh
 
     public ParticleSystem particleSystemTemplate;
@@ -136,7 +136,8 @@ public class PaintManager : MonoBehaviour
 
     private void Paint ()
     {
-        Vector3 paintPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
+        Vector3 paintPosition = paintTarget.transform.position;
+            //Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane)) + Camera.main.transform.forward * 2.0f;
             //Camera.main.transform.position + Camera.main.transform.forward * 0.3f;
         if (Vector3.Distance(paintPosition, previousPosition) > 0.025f)
         {
