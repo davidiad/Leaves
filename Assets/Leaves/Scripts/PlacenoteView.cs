@@ -454,7 +454,15 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
         {
             sV3List.sv3s[i] = paintManager.currVertices[i];
         }
-        Debug.Log("XXXXXX: " + sV3List);
+        sV3List.sv3s = new SerializableVector3[4];
+        sV3List.sv3s[0] = new SerializableVector3(1, 2, 3);
+        sV3List.sv3s[1] = new SerializableVector3(10, 2, 3);
+        sV3List.sv3s[2] = new SerializableVector3(1, 20, 3);
+        sV3List.sv3s[3] = new SerializableVector3(1, 2, 30);
+
+        Debug.Log("XXXXXX: " + sV3List.sv3s.Length);
+        JObject jo = JObject.FromObject(sV3List);
+        Debug.Log("XXXXXX: " + jo);
 
         return JObject.FromObject(sV3List);
     }
@@ -470,6 +478,29 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
         }
 
         return JObject.FromObject(shapeList);
+    }
+
+
+    private void LoadSv3ListJSON(JToken mapMetadata)
+    {
+        paintManager.currVertices.Clear();
+
+        if (mapMetadata is JObject && mapMetadata["sv3list"] is JObject)
+        {
+            SV3List sv3list = mapMetadata["sv3list"].ToObject<SV3List>();
+            if (sv3list.sv3s == null)
+            {
+                Debug.Log("no sv3s dropped");
+                return;
+            }
+
+            foreach (SerializableVector3 sv3 in sv3list.sv3s)
+            {
+                Vector3 vector = sv3;
+                Debug.Log("YYYYY " + sv3);
+                paintManager.currVertices.Add(vector);
+            }
+        }
     }
 
 
@@ -492,13 +523,6 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
                 GameObject shape = ShapeFromInfo(shapeInfo);
                 shapeObjList.Add(shape);
             }
-
-            //SerializableVector3[] sv3s = mapMetadata["sv3s"].ToObject<SerializableVector3[]>;
-        }
-
-        if (mapMetadata is JObject && mapMetadata["ps"] is JObject)
-        {
-            paintManager.ps = mapMetadata["ps"].ToObject<ParticleSystem>();
         }
     }
 
@@ -516,6 +540,7 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
         {
             mLabelText.text = "Localized";
             LoadShapesJSON(mSelectedMapInfo.userData);
+            LoadSv3ListJSON(mSelectedMapInfo.userData);
         }
         else if (currStatus == LibPlacenote.MappingStatus.RUNNING &&
                  prevStatus == LibPlacenote.MappingStatus.WAITING)
