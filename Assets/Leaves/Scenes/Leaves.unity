@@ -1105,7 +1105,7 @@ Prefab:
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 292.5
+      value: 258
       objectReference: {fileID: 0}
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
@@ -1115,7 +1115,7 @@ Prefab:
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 585
+      value: 516
       objectReference: {fileID: 0}
     - target: {fileID: 224519482559380400, guid: a3ef81b9c1147467396e3a086b211961,
         type: 2}
@@ -2658,6 +2658,8 @@ MonoBehaviour:
   paintTarget: {fileID: 150348897}
   particleSystemTemplate: {fileID: 198562639688608984, guid: f4f064f65d93e40aaae629b5fce52d25,
     type: 2}
+  particleSystemList: []
+  currVertices: []
   ps: {fileID: 0}
   mainCam: {fileID: 1342869163}
 --- !u!1 &843292803

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-/*
+
 [System.Serializable]
 public class ShapeInfo
 {
@@ -35,9 +35,9 @@ public class ShapeList
 {
     public ShapeInfo[] shapes;
 }
-*/
 
-public class PlacenoteView : MonoBehaviour, PlacenoteListener
+
+public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 {
     [SerializeField] GameObject mMapSelectedPanel;
     [SerializeField] GameObject mInitButtonPanel;
@@ -179,7 +179,7 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
             {
                 if (mapId.userData != null)
                 {
-                    Debug.Log(mapId.userData.ToString(Formatting.None));
+                    //Debug.Log(mapId.userData.ToString(Formatting.None));
                 }
                 AddMapToList(mapId);
             }

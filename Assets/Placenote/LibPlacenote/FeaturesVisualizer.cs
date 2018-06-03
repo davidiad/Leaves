@@ -8,15 +8,14 @@ using UnityEngine;
 /// </summary>
 public class FeaturesVisualizer : MonoBehaviour, PlacenoteListener
 {
-	private static FeaturesVisualizer sInstance;
+    [SerializeField] static FeaturesVisualizer sInstance;
 	[SerializeField] Material mPtCloudMat;
 	[SerializeField] GameObject mMap;
 
 	void Awake ()
 	{
 		sInstance = this;
-
-		// This is required for OnPose and OnStatusChange to be triggered
+        // This is required for OnPose and OnStatusChange to be triggered
 		LibPlacenote.Instance.RegisterListener (this);
 	}
 
