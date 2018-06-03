@@ -336,10 +336,9 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 
 
 				JObject metadata = new JObject ();
-
 				JObject shapeList = Shapes2JSON();
-				metadata["shapeList"] = shapeList;
-
+                metadata["shapeList"] = shapeList;
+                metadata["ps"] = JsonUtility.ToJson(paintManager.ps);
 				if (useLocation) {
 					metadata["location"] = new JObject ();
 					metadata["location"]["latitude"] = locationInfo.latitude;
@@ -427,7 +426,12 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 				shapeObjList.Add(shape);
 			}
 		}
-	}
+    
+        if (mapMetadata is JObject && mapMetadata["ps"] is JObject)
+        {
+            paintManager.ps = mapMetadata["ps"].ToObject<ParticleSystem>();
+        }
+    }
 
 
 	public void OnPose (Matrix4x4 outputPose, Matrix4x4 arkitPose) {}
