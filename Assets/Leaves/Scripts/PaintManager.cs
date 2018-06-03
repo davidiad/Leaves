@@ -14,8 +14,8 @@ public class PaintManager : MonoBehaviour
     private Color paintColor;
     private Vector3 previousPosition;
 
-    private List<ParticleSystem> particleSystemList; // Stores all particle systems
-    private List<Vector3> currVertices; // Stores current camera positions to paint
+    public List<ParticleSystem> particleSystemList; // Stores all particle systems
+    public List<Vector3> currVertices; // Stores current camera positions to paint
     public ParticleSystem ps; // Stores current particle system
 
     void OnEnable()

@@ -338,7 +338,7 @@ public class PlacenoteView : MonoBehaviour, PlacenoteListener
 				JObject metadata = new JObject ();
 				JObject shapeList = Shapes2JSON();
                 metadata["shapeList"] = shapeList;
-                metadata["ps"] = JsonUtility.ToJson(paintManager.ps);
+                //metadata["ps"] = JsonUtility.ToJson(paintManager.ps.GetParticles());
 				if (useLocation) {
 					metadata["location"] = new JObject ();
 					metadata["location"]["latitude"] = locationInfo.latitude;
